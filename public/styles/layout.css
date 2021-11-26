@@ -17,7 +17,17 @@ html {
 body {
   color: #545149;
   background-color: #f4f1ec;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 24px;
+}
+
+main {
+  width: 90%;
+  margin-left: 2.5em;
+  align-content: center;
+  text-align: center;
+  background-color: inherit;
+  background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
 }
 
 /*

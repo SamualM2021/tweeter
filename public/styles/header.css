@@ -1,0 +1,15 @@
+header {
+  padding-left: 25em;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  width: 100%;
+  color: lightgoldenrodyellow;
+  background-color:#800020;
+  background-image: url("https://www.transparenttextures.com/patterns/black-orchid.png");
+}
+
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+#profileName {
+  margin-top: -2.5em;
+}

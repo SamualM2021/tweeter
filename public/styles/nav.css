@@ -1,0 +1,30 @@
+nav {
+  color: #FFFFFF;
+  height: 120px;
+  display: flex;
+  background-color: #4056A1;
+  position: relative;
+  z-index: -1;
+}
+
+nav span {
+  font-family: 'Bungee', cursive;
+  font-size: xx-large;
+  padding: 50px 1.5em;
+}
+
+#newTweet{
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  padding: 50px 1.5em;
+}
+
+#newTweetIcon {
+  color: red;
+}
+
+.fa {
+  padding-left: 70px;
+  font-size: xx-large;
+}
