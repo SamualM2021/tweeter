@@ -13,14 +13,14 @@ nav span {
   padding: 50px 1.5em;
 }
 
-#newTweet{
+#newTweetNav {
   display: flex;
   flex-direction: column;
   margin-left: auto;
   padding: 50px 1.5em;
 }
 
-#newTweetIcon {
+#newTweetNavIcon {
   color: red;
 }
 

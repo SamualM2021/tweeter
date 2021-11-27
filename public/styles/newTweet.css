@@ -1,0 +1,36 @@
+section.newTweet {
+  display: flex;
+  flex-direction: column;
+}
+
+#newTweetInput {
+  display: flex;
+  flex-direction: row;
+  border-bottom: solid;
+}
+
+#tweetText {
+  width: 75%;
+  align-items: center;
+  background-color: inherit;
+  border: unset;
+}
+
+#submitTweetDiv {
+  display: flex;
+  flex-direction: row;
+}
+#newTweetButton {
+  font-family: 'Bungee';
+  margin: 1em;
+  background-color: #4056A1;
+  color: #FFFFFF;
+}
+
+.counter {
+  padding-left: 40em;
+  align-content: flex-end;
+  margin: 1em;
+  font-weight: bolder;
+  font-family: 'Bungee';
+}
