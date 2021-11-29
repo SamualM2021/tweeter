@@ -3,8 +3,9 @@ nav {
   height: 120px;
   display: flex;
   background-color: #4056A1;
-  position: relative;
-  z-index: -1;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 nav span {
