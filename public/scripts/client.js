@@ -1,3 +1,44 @@
+//Helper Functions to Build individual components of a tweetDisplay Article
+const buildTweetHeader = tweetDataObject => {
+  return `
+    <header>
+      <img class = "tweetDisplayIcon" src=${tweetDataObject.user.avatars}>
+      <div class="tweetDisplayName">${tweetDataObject.user.name}</div>
+      <div class="tweetDisplayTag">${tweetDataObject.user.handle}</div>
+    </header>
+  `;
+}
+
+const buildTweetContent = tweetDataObject => {
+  return `
+    <div class="tweetContent">${tweetDataObject.content.text}</div>
+  `;
+}
+
+const buildTweetFooter =  createdDate => {
+  return `
+    <footer>
+      <div class="tweetResponseDate"><time class="tweetPostDate">${timeago.format(createdDate, "en")}</time></div>
+      <div class= tweetResponseIcons><i class="fa fa-flag" aria-hidden="true"></i><i class="fa fa-retweet" aria-hidden="true"></i><i class="fa fa-heart" aria-hidden="true"></i></div>
+    </footer>
+  `;
+}
+const createTweetElement = tweetDataObject => {
+  //Build the Header
+  let tweetHeader = buildTweetHeader(tweetDataObject);
+
+  //Build Content
+  let tweetContent = buildTweetContent(tweetDataObject);
+
+  //Build the Footer
+  let createdDate = `${new Date(tweetDataObject.created_at)}`;
+  let tweetFooter =  buildTweetFooter(createdDate);
+
+  //Build the Article
+  let tweetArticle = `<article>${tweetHeader}${tweetContent}${tweetFooter}</article>`;
+  $("section.tweetDisplay").append(tweetArticle)
+};
+
 /*
  * Client-side JS logic goes here
  * jQuery is already loaded
@@ -69,6 +110,18 @@ jQuery(document).ready(function() {
 
   timeago.register('en', humanizedDate);
 
-  $("footer").prepend(`<div class="tweetResponseDate"><time class="tweetPostDate">${timeago.format("2021-11-17 8:00:00", "en")}</time></div>`);
-  //$("time.timeago").timeago();
+
+
+
+  createTweetElement({
+    user: {
+      name: "Newton",
+      avatars: "https://i.imgur.com/73hZDYK.png",
+      handle: "@SirIsaac"
+    },
+    content: {
+      text: "If I have seen further it is by standing on the shoulders of giants"
+    },
+    created_at: 1638037051251
+  });
 });
