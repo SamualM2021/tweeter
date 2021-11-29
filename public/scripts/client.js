@@ -1,3 +1,29 @@
+//Note: Dummy Data to remove when we actually implement fetch
+const tweetDataArray = [
+  {
+    "user": {
+      "name": "Newton",
+      "avatars": "https://i.imgur.com/73hZDYK.png"
+      ,
+      "handle": "@SirIsaac"
+    },
+    "content": {
+      "text": "If I have seen further it is by standing on the shoulders of giants"
+    },
+    "created_at": 1638039307643
+  },
+  {
+    "user": {
+      "name": "Descartes",
+      "avatars": "https://i.imgur.com/nlhLi3I.png",
+      "handle": "@rd" },
+    "content": {
+      "text": "Je pense , donc je suis"
+    },
+    "created_at": 1638125707643
+  }
+];
+
 //Helper Functions to Build individual components of a tweetDisplay Article
 const buildTweetHeader = tweetDataObject => {
   return `
@@ -23,6 +49,12 @@ const buildTweetFooter =  createdDate => {
     </footer>
   `;
 }
+
+/**
+ * Given the metadata for a tweet this creates a tweet object and returns it
+ * @param {The object we're creating an element for} tweetDataObject
+ * @returns HTML markup of the element as a String
+ */
 const createTweetElement = tweetDataObject => {
   //Build the Header
   let tweetHeader = buildTweetHeader(tweetDataObject);
@@ -31,12 +63,24 @@ const createTweetElement = tweetDataObject => {
   let tweetContent = buildTweetContent(tweetDataObject);
 
   //Build the Footer
+  console.log(`${new Date(tweetDataObject.created_at)}`);
   let createdDate = `${new Date(tweetDataObject.created_at)}`;
   let tweetFooter =  buildTweetFooter(createdDate);
 
   //Build the Article
   let tweetArticle = `<article>${tweetHeader}${tweetContent}${tweetFooter}</article>`;
-  $("section.tweetDisplay").append(tweetArticle)
+  return tweetArticle;
+};
+
+/**
+ * Renders each object in the array into our tweetDisplay container
+ * @param {the array of tweet data objects we have} tweetDataObjectArray
+ */
+const renderTweets = tweetDataObjectArray => {
+  // For each object in our array create a tweetElement for it
+  tweetDataObjectArray.forEach(element => {
+    $("section.tweetDisplay").append(createTweetElement(element));
+  });
 };
 
 /*
@@ -113,15 +157,5 @@ jQuery(document).ready(function() {
 
 
 
-  createTweetElement({
-    user: {
-      name: "Newton",
-      avatars: "https://i.imgur.com/73hZDYK.png",
-      handle: "@SirIsaac"
-    },
-    content: {
-      text: "If I have seen further it is by standing on the shoulders of giants"
-    },
-    created_at: 1638037051251
-  });
+  renderTweets(tweetDataArray);
 });
