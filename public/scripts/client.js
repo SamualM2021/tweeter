@@ -5,6 +5,22 @@ const INVALID_TWEET_EMPTY_MESSAGE = "Invalid Tweet: No tweet text present!";
 const INVALID_TWEET_TOO_LONG_MESSAGE = "Invalid Tweet: Tweet text has exceeded maximum length!";
 
 /**
+ * https://shashankvivek-7.medium.com/understanding-xss-and-preventing-it-using-pure-javascript-ef0668b37687
+ * @returns XSS String escape prototype provided by
+ * Shashank Vivek
+ */
+String.prototype.escape = function() {
+  var tagsToReplace = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;'
+  };
+  return this.replace(/[&<>]/g, function(tag) {
+      return tagsToReplace[tag] || tag;
+  });
+};
+
+/**
  * This class is responsible for the logic of building a tweet
  */
 class TweetBuilder {
@@ -17,16 +33,16 @@ class TweetBuilder {
   buildTweetHeader = tweetDataObject => {
     return `
       <header>
-        <img class = "tweetDisplayIcon" src=${tweetDataObject.user.avatars}>
-        <div class="tweetDisplayName">${tweetDataObject.user.name}</div>
-        <div class="tweetDisplayTag">${tweetDataObject.user.handle}</div>
+        <img class = "tweetDisplayIcon" src=${tweetDataObject.user.avatars.escape()}>
+        <div class="tweetDisplayName">${tweetDataObject.user.name.escape()}</div>
+        <div class="tweetDisplayTag">${tweetDataObject.user.handle.escape()}</div>
       </header>
     `;
   }
 
   buildTweetContent = tweetDataObject => {
     return `
-      <div class="tweetContent">${tweetDataObject.content.text}</div>
+      <div class="tweetContent">${tweetDataObject.content.text.escape()}</div>
     `;
   }
 
@@ -72,6 +88,11 @@ const createTweetElement = tweetDataObject => {
  * @param {the array of tweet data objects we have} tweetDataObjectArray
  */
 const renderTweets = tweetDataObjectArray => {
+  //Sort the array by date -- this will make the most recent tweets display at the top
+  tweetDataObjectArray.sort((first, second) => {
+    return new Date(second.created_at) - new Date(first.created_at);
+  });
+
   // For each object in our array create a tweetElement for it
   tweetDataObjectArray.forEach(element => {
     $("section.tweetDisplay").append(createTweetElement(element));
@@ -79,6 +100,7 @@ const renderTweets = tweetDataObjectArray => {
 };
 
 const loadTweets = () => {
+  $("article").remove();
   $.get(TWEET_ROUTE, function(data, status) {
     renderTweets(data);
   });
@@ -95,6 +117,9 @@ jQuery(document).ready(function() {
   const HOURS = 24;
   const SECONDS_IN_DAY = HOURS * MINUTES * SECONDS;
 
+  const getTimeDifference = (first, second) => {
+
+  };
   /**
    * Custom Locale calculations were provided by acusti
    * https://github.com/hustcc/timeago.js/issues/139#issuecomment-424162015
@@ -172,8 +197,10 @@ jQuery(document).ready(function() {
       alert(INVALID_TWEET_TOO_LONG_MESSAGE);
     } else {
       // route to our tweets.js
-      $.post(TWEET_ROUTE, $formData);
+      $.post(TWEET_ROUTE, $formData)
+      .done(() => loadTweets());
     }
+
 
   });
 
