@@ -1,5 +1,8 @@
 //Global Const
 const TWEET_ROUTE = "/tweets/";
+const MAXIMUM_COUNT = 140;
+const INVALID_TWEET_EMPTY_MESSAGE = "Invalid Tweet: No tweet text present!";
+const INVALID_TWEET_TOO_LONG_MESSAGE = "Invalid Tweet: Tweet text has exceeded maximum length!";
 
 /**
  * This class is responsible for the logic of building a tweet
@@ -161,10 +164,16 @@ jQuery(document).ready(function() {
     let $tweetText = $form.find("#tweetText");
     let $formData = $tweetText.serialize();
 
-
-
-    // route to our tweets.js
-    $.post(TWEET_ROUTE, $formData);
+    let $tweetTextVal = $tweetText.val().trim();
+    let isTweetEmpty = ($tweetTextVal === "" || $tweetTextVal === null);
+    if (isTweetEmpty) {
+      alert(INVALID_TWEET_EMPTY_MESSAGE);
+    } else if ($tweetTextVal.length > MAXIMUM_COUNT) {
+      alert(INVALID_TWEET_TOO_LONG_MESSAGE);
+    } else {
+      // route to our tweets.js
+      $.post(TWEET_ROUTE, $formData);
+    }
 
   });
 
