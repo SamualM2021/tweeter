@@ -186,16 +186,19 @@ jQuery(document).ready(function() {
     event.preventDefault();
 
     let $form = $(this).closest("form");
+    let $errorDisplay = $form.find("#newTweetErrorDisplay");
     let $tweetText = $form.find("#tweetText");
     let $formData = $tweetText.serialize();
 
     let $tweetTextVal = $tweetText.val().trim();
     let isTweetEmpty = ($tweetTextVal === "" || $tweetTextVal === null);
+    let isTweetTooLong = $tweetTextVal.length > MAXIMUM_COUNT;
     if (isTweetEmpty) {
-      alert(INVALID_TWEET_EMPTY_MESSAGE);
-    } else if ($tweetTextVal.length > MAXIMUM_COUNT) {
-      alert(INVALID_TWEET_TOO_LONG_MESSAGE);
+      $errorDisplay.text(INVALID_TWEET_EMPTY_MESSAGE).toggle(true);
+    } else if (isTweetTooLong) {
+      $errorDisplay.text(INVALID_TWEET_TOO_LONG_MESSAGE).toggle(true);
     } else {
+      $errorDisplay.text("").toggle(false);
       // route to our tweets.js
       $.post(TWEET_ROUTE, $formData)
       .done(() => loadTweets());

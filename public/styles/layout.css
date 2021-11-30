@@ -10,10 +10,22 @@ html {
   box-sizing: inherit;
 }
 
+@media screen and (min-width: 1024px) {
+  body {
+    color: #545149;
+    background-color: #f4f1ec;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
 /*
- * Global layout stuff
- */
-
+* Global layout stuff
+* Note: For body attempted to use flexbox and media screen but
+* I wasn't getting good responsiveness using that approach
+*/
 body {
   color: #545149;
   background-color: #f4f1ec;

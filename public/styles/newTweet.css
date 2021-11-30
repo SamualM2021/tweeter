@@ -9,6 +9,12 @@ section.newTweet {
   border-bottom: solid;
 }
 
+#newTweetErrorDisplay {
+  color: indianred;
+  font-weight: bolder;
+  font-family: "Source Sans Pro";
+}
+
 #tweetText {
   width: 75%;
   align-items: center;
@@ -22,8 +28,10 @@ section.newTweet {
 }
 
 #submitTweetDiv {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 80%;
+  justify-content: end;
 }
 
 #newTweetButton {
@@ -38,7 +46,6 @@ section.newTweet {
 }
 
 .counter {
-  padding-left: 40em;
   align-content: flex-end;
   margin: 1em auto;
   user-select: none;
@@ -83,7 +90,6 @@ section.tweetDisplay header {
 
 .tweetContent {
   background-color: #f4f1ec;
-  padding-bottom: 14px;
   /**Note: Might want this later*/
   /* height: 97px;
   overflow: scroll; */
@@ -102,10 +108,12 @@ section.tweetDisplay header {
 
 .tweetDisplay footer {
   background-color: #f4f1ec;
-  background-image: none;
-  margin: 5px;
-  display: flex;
-  flex-direction: inherit;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 70%;
+  width: 100%;
+  justify-items: center;
+
 }
 
 .tweetPostDate {
@@ -114,18 +122,12 @@ section.tweetDisplay header {
   font-family: 'Source Sans Pro';
   font-weight: 600;
   user-select: none;
-  margin-right: 72em;
   color: black;
-}
-
-.tweetResponseDate {
-  display: flex;
 }
 
 .tweetResponseIcons {
   color: #4056A1;
   display: flex;
-  justify-content: space-evenly;
 }
 
 .tweetResponseIcons .fa {

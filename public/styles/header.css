@@ -1,7 +1,8 @@
 header {
-  padding-left: 21em;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
   height: 400px;
   margin-top: 5em;
   width: 100%;
