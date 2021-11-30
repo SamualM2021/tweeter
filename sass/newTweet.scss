@@ -1,3 +1,12 @@
+$errorColor: indianred;
+$navColor: #FFFFFF;
+$navBackgroundColor: #4056A1;
+$navFontFamily: 'Bungee', cursive;
+$layoutFontFamily: 'Source Sans Pro', sans-serif;
+$tweetHeaderColor: #545149;
+$tweetBackgroundColor: #f4f1ec;
+$tweetDisplayColor: #c3b8b8;
+
 section.newTweet {
   display: flex;
   flex-direction: column;
@@ -10,9 +19,9 @@ section.newTweet {
 }
 
 #newTweetErrorDisplay {
-  color: indianred;
+  color: $errorColor;
   font-weight: bolder;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: $layoutFontFamily;
 }
 
 #tweetText {
@@ -35,14 +44,14 @@ section.newTweet {
 }
 
 #newTweetButton {
-  font-family: "Bungee", cursive;
+  font-family: $navFontFamily;
   margin: 1em;
-  background-color: #4056A1;
-  color: #FFFFFF;
+  background-color: $navBackgroundColor;
+  color: $navColor;
 }
 
 #newTweetButton:hover {
-  color: indianred;
+  color: $errorColor;
 }
 
 .counter {
@@ -50,16 +59,16 @@ section.newTweet {
   margin: 1em auto;
   user-select: none;
   font-weight: bolder;
-  font-family: "Bungee", cursive;
+  font-family: $navFontFamily;
 }
 
 .invalidTweetLength {
-  color: indianred;
+  color: $errorColor;
 }
 
 section.tweetDisplay header {
-  color: #545149;
-  background-color: #f4f1ec;
+  color: $tweetHeaderColor;
+  background-color: $tweetBackgroundColor;
   background-image: none;
   display: flex;
   flex-direction: inherit;
@@ -85,11 +94,11 @@ section.tweetDisplay header {
 
 .tweetDisplayTag {
   user-select: none;
-  color: #c3b8b8;
+  color: $tweetDisplayColor;
 }
 
 .tweetContent {
-  background-color: #f4f1ec;
+  background-color: $tweetBackgroundColor;
   /**Note: Might want this later*/
   /* height: 97px;
   overflow: scroll; */
@@ -98,39 +107,39 @@ section.tweetDisplay header {
 }
 
 .tweetDisplay footer {
-  background-color: #f4f1ec;
+  background-color: $tweetBackgroundColor;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 70%;
   width: 100%;
   justify-items: center;
-}
-.tweetDisplay footer .tweetDisplay article {
-  border: 3px solid black;
-  padding: 0px 15px;
-}
-.tweetDisplay footer .tweetDisplay article:hover {
-  box-shadow: indianred;
+  .tweetDisplay article {
+    border: 3px solid black;
+    padding: 0px 15px;
+  }
+  .tweetDisplay article:hover {
+    box-shadow: $errorColor;
+  }
 }
 
 .tweetPostDate {
   align-items: center;
   font-size: small;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: $layoutFontFamily;
   font-weight: 600;
   user-select: none;
   color: black;
 }
 
 .tweetResponseIcons {
-  color: #4056A1;
+  color: $navBackgroundColor;
   display: flex;
-}
-.tweetResponseIcons .fa {
-  padding: 0px 8px;
-  font-size: medium;
-}
-.tweetResponseIcons .fa:hover {
-  cursor: pointer;
-  color: indianred;
+  .fa {
+    padding: 0px 8px;
+    font-size: medium;
+  }
+  .fa:hover {
+    cursor:pointer;
+    color: $errorColor;
+  }
 }

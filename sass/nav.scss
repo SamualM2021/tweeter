@@ -1,16 +1,21 @@
+$navColor: #FFFFFF;
+$navBackgroundColor: #4056A1;
+$navFontFamily: 'Bungee', cursive;
+$navFontSize: xx-large;
+
 nav {
-  color: #FFFFFF;
+  color: $navColor;
   height: 120px;
   display: flex;
-  background-color: #4056A1;
+  background-color: $navBackgroundColor;
   position: fixed;
   top: 0;
   width: 100%;
-}
-nav span {
-  font-family: "Bungee", cursive;
-  font-size: xx-large;
-  padding: 50px 1.5em;
+  span {
+    font-family: $navFontFamily;
+    font-size: $navFontSize;
+    padding: 50px 1.5em;
+  }
 }
 
 #newTweetNav {
@@ -28,5 +33,5 @@ nav span {
 
 .fa {
   padding-left: 70px;
-  font-size: xx-large;
+  font-size: $navFontSize;
 }

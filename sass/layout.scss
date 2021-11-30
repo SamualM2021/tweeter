@@ -1,3 +1,9 @@
+$headerColor:#800020;
+$layoutBackgroundImageUrl: "https://www.transparenttextures.com/patterns/black-thread-light.png";
+$layoutColor: #545149;
+$layoutBackgroundColor: #f4f1ec;
+$layoutFontFamily: 'Source Sans Pro', sans-serif;
+
 /*
  * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
  * https://css-tricks.com/international-box-sizing-awareness-day/
@@ -6,7 +12,6 @@
 html {
   box-sizing: border-box;
 }
-
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -17,9 +22,9 @@ html {
 * I wasn't getting good responsiveness using that approach
 */
 body {
-  color: #545149;
-  background-color: #f4f1ec;
-  font-family: "Source Sans Pro", sans-serif;
+  color: $layoutColor;
+  background-color: $layoutBackgroundColor;
+  font-family: $layoutFontFamily;
   font-size: 24px;
 }
 
@@ -29,7 +34,7 @@ main {
   align-content: center;
   text-align: center;
   background-color: inherit;
-  background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
+  background-image: url($layoutBackgroundImageUrl);
 }
 
 /*

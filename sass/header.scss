@@ -1,3 +1,6 @@
+$headerColor:#800020;
+$headerBackgroundImageUrl: "https://www.transparenttextures.com/patterns/black-orchid.png";
+
 header {
   display: grid;
   grid-template-columns: 1fr;
@@ -7,8 +10,8 @@ header {
   margin-top: 5em;
   width: 100%;
   color: lightgoldenrodyellow;
-  background-color: #800020;
-  background-image: url("https://www.transparenttextures.com/patterns/black-orchid.png");
+  background-color: $headerColor;
+  background-image: url($headerBackgroundImageUrl);
 }
 
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
