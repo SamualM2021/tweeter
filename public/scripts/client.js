@@ -1,54 +1,58 @@
-//Note: Dummy Data to remove when we actually implement fetch
-const tweetDataArray = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1638039307643
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1638125707643
+//Global Const
+const TWEET_ROUTE = "/tweets/";
+
+/**
+ * This class is responsible for the logic of building a tweet
+ */
+class TweetBuilder {
+  #tweet;
+  constructor() {
+
   }
-];
 
-//Helper Functions to Build individual components of a tweetDisplay Article
-const buildTweetHeader = tweetDataObject => {
-  return `
-    <header>
-      <img class = "tweetDisplayIcon" src=${tweetDataObject.user.avatars}>
-      <div class="tweetDisplayName">${tweetDataObject.user.name}</div>
-      <div class="tweetDisplayTag">${tweetDataObject.user.handle}</div>
-    </header>
-  `;
+  //Helper Functions to Build individual components of a tweetDisplay Article
+  buildTweetHeader = tweetDataObject => {
+    return `
+      <header>
+        <img class = "tweetDisplayIcon" src=${tweetDataObject.user.avatars}>
+        <div class="tweetDisplayName">${tweetDataObject.user.name}</div>
+        <div class="tweetDisplayTag">${tweetDataObject.user.handle}</div>
+      </header>
+    `;
+  }
+
+  buildTweetContent = tweetDataObject => {
+    return `
+      <div class="tweetContent">${tweetDataObject.content.text}</div>
+    `;
+  }
+
+  buildTweetFooter =  createdDate => {
+    return `
+      <footer>
+        <div class="tweetResponseDate"><time class="tweetPostDate">${timeago.format(createdDate, "en")}</time></div>
+        <div class= tweetResponseIcons><i class="fa fa-flag" aria-hidden="true"></i><i class="fa fa-retweet" aria-hidden="true"></i><i class="fa fa-heart" aria-hidden="true"></i></div>
+      </footer>
+    `;
+  }
+
+  build = (tweetDataObject) => {
+    //Build the Header
+    let tweetHeader = this.buildTweetHeader(tweetDataObject);
+
+    //Build Content
+    let tweetContent = this.buildTweetContent(tweetDataObject);
+
+    //Build the Footer
+    let createdDate = `${new Date(tweetDataObject.created_at)}`;
+    let tweetFooter =  this.buildTweetFooter(createdDate);
+
+    //Build the Article
+    this.#tweet = `<article>${tweetHeader}${tweetContent}${tweetFooter}</article>`;
+    return this.#tweet;
+  };
 }
 
-const buildTweetContent = tweetDataObject => {
-  return `
-    <div class="tweetContent">${tweetDataObject.content.text}</div>
-  `;
-}
-
-const buildTweetFooter =  createdDate => {
-  return `
-    <footer>
-      <div class="tweetResponseDate"><time class="tweetPostDate">${timeago.format(createdDate, "en")}</time></div>
-      <div class= tweetResponseIcons><i class="fa fa-flag" aria-hidden="true"></i><i class="fa fa-retweet" aria-hidden="true"></i><i class="fa fa-heart" aria-hidden="true"></i></div>
-    </footer>
-  `;
-}
 
 /**
  * Given the metadata for a tweet this creates a tweet object and returns it
@@ -56,20 +60,8 @@ const buildTweetFooter =  createdDate => {
  * @returns HTML markup of the element as a String
  */
 const createTweetElement = tweetDataObject => {
-  //Build the Header
-  let tweetHeader = buildTweetHeader(tweetDataObject);
-
-  //Build Content
-  let tweetContent = buildTweetContent(tweetDataObject);
-
-  //Build the Footer
-  console.log(`${new Date(tweetDataObject.created_at)}`);
-  let createdDate = `${new Date(tweetDataObject.created_at)}`;
-  let tweetFooter =  buildTweetFooter(createdDate);
-
-  //Build the Article
-  let tweetArticle = `<article>${tweetHeader}${tweetContent}${tweetFooter}</article>`;
-  return tweetArticle;
+  let tweetBuilder = new TweetBuilder();
+  return tweetBuilder.build(tweetDataObject);
 };
 
 /**
@@ -80,6 +72,12 @@ const renderTweets = tweetDataObjectArray => {
   // For each object in our array create a tweetElement for it
   tweetDataObjectArray.forEach(element => {
     $("section.tweetDisplay").append(createTweetElement(element));
+  });
+};
+
+const loadTweets = () => {
+  $.get(TWEET_ROUTE, function(data, status) {
+    renderTweets(data);
   });
 };
 
@@ -155,7 +153,20 @@ jQuery(document).ready(function() {
   timeago.register('en', humanizedDate);
 
 
+  $("#newTweetButton").on("click", function(event) {
+    //override the default behaviour
+    event.preventDefault();
+
+    let $form = $(this).closest("form");
+    let $tweetText = $form.find("#tweetText");
+    let $formData = $tweetText.serialize();
 
 
-  renderTweets(tweetDataArray);
+
+    // route to our tweets.js
+    $.post(TWEET_ROUTE, $formData);
+
+  });
+
+  loadTweets();
 });
