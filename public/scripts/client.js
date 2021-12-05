@@ -180,6 +180,26 @@ jQuery(document).ready(function() {
 
   timeago.register('en', humanizedDate);
 
+  window.onscroll = function() {showNavToTop()};
+
+  function showNavToTop() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      navToTopIcon.style.display = "block";
+    } else {
+      navToTopIcon.style.display = "none";
+    }
+  }
+  $("#navToTopIcon").on("click", function(event) {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Oper
+  });
+
+  $("#newTweetNavIcon").on("click", function(event) {
+
+    $(".newTweet").slideToggle("slow")
+    $("#tweetText").focus();
+  });
+
 
   $("#newTweetButton").on("click", function(event) {
     //override the default behaviour
@@ -194,11 +214,15 @@ jQuery(document).ready(function() {
     let isTweetEmpty = ($tweetTextVal === "" || $tweetTextVal === null);
     let isTweetTooLong = $tweetTextVal.length > MAXIMUM_COUNT;
     if (isTweetEmpty) {
+      $errorDisplay.slideDown("slow");
       $errorDisplay.text(INVALID_TWEET_EMPTY_MESSAGE).toggle(true);
     } else if (isTweetTooLong) {
+      $errorDisplay.slideDown("slow");
       $errorDisplay.text(INVALID_TWEET_TOO_LONG_MESSAGE).toggle(true);
     } else {
       $errorDisplay.text("").toggle(false);
+      $tweetText.val("");
+      $(".counter").text(MAXIMUM_COUNT);
       // route to our tweets.js
       $.post(TWEET_ROUTE, $formData)
       .done(() => loadTweets());

@@ -2,6 +2,7 @@ nav {
   color: #FFFFFF;
   height: 120px;
   display: flex;
+  padding: 0 1em;
   background-color: #4056A1;
   position: fixed;
   top: 0;
@@ -29,4 +30,56 @@ nav span {
 .fa {
   padding-left: 70px;
   font-size: xx-large;
+}
+
+.fa-angle-double-down {
+  animation: bounce 2s infinite;
+  -webkit-animation: bounce 2s infinite;
+  -moz-animation: bounce 2s infinite;
+  -o-animation: bounce 2s infinite;
+}
+
+@-webkit-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-16px);
+  }
+  60% {
+    -webkit-transform: translateY(-8px);
+  }
+}
+@-moz-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -moz-transform: translateY(0);
+  }
+  40% {
+    -moz-transform: translateY(-16px);
+  }
+  60% {
+    -moz-transform: translateY(-8px);
+  }
+}
+@-o-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -o-transform: translateY(0);
+  }
+  40% {
+    -o-transform: translateY(-16px);
+  }
+  60% {
+    -o-transform: translateY(-8px);
+  }
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-16px);
+  }
+  60% {
+    transform: translateY(-8px);
+  }
 }

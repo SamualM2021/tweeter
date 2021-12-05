@@ -22,7 +22,6 @@ section.newTweet {
   border: unset;
   resize: none;
 }
-
 #tweetText:hover {
   border: 1px solid black;
 }
@@ -40,7 +39,6 @@ section.newTweet {
   background-color: #4056A1;
   color: #FFFFFF;
 }
-
 #newTweetButton:hover {
   color: indianred;
 }
@@ -105,12 +103,13 @@ section.tweetDisplay header {
   width: 100%;
   justify-items: center;
 }
-.tweetDisplay footer .tweetDisplay article {
+
+.tweetDisplay article {
   border: 3px solid black;
   padding: 0px 15px;
 }
-.tweetDisplay footer .tweetDisplay article:hover {
-  box-shadow: indianred;
+.tweetDisplay article:hover {
+  box-shadow: 5px 0px indianred;
 }
 
 .tweetPostDate {

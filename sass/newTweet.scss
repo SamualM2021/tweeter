@@ -30,10 +30,9 @@ section.newTweet {
   background-color: inherit;
   border: unset;
   resize: none;
-}
-
-#tweetText:hover {
-  border: 1px solid black;
+  &:hover {
+    border: 1px solid black;
+  }
 }
 
 #submitTweetDiv {
@@ -48,10 +47,9 @@ section.newTweet {
   margin: 1em;
   background-color: $navBackgroundColor;
   color: $navColor;
-}
-
-#newTweetButton:hover {
-  color: $errorColor;
+  &:hover {
+    color: $errorColor;
+  }
 }
 
 .counter {
@@ -113,12 +111,13 @@ section.tweetDisplay header {
   grid-column-gap: 70%;
   width: 100%;
   justify-items: center;
-  .tweetDisplay article {
-    border: 3px solid black;
-    padding: 0px 15px;
-  }
-  .tweetDisplay article:hover {
-    box-shadow: $errorColor;
+}
+
+.tweetDisplay article {
+  border: 3px solid black;
+  padding: 0px 15px;
+  &:hover {
+    box-shadow: 5px 0px $errorColor;
   }
 }
 
@@ -137,9 +136,9 @@ section.tweetDisplay header {
   .fa {
     padding: 0px 8px;
     font-size: medium;
-  }
-  .fa:hover {
-    cursor:pointer;
-    color: $errorColor;
+    &:hover {
+      cursor:pointer;
+      color: $errorColor;
+    }
   }
 }

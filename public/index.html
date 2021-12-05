@@ -55,11 +55,12 @@
       <section class="newTweet">
         <h2>Compose Tweet</h2>
         <form action="/" method="post" enctype="application/x-www-form-urlencoded">
+          <div id= "newTweetErrorDisplay"></div>
           <div id="newTweetInput">
             <label id="newTweetLabel" for="tweetText">What are you humming about?</label>
             <textarea name="text" id="tweetText"></textarea>
           </div>
-          <div id= "newTweetErrorDisplay"></div>
+
           <div id="submitTweetDiv">
             <button id="newTweetButton" type="submit">Tweet</button>
             <output name="counter" class="counter" for="tweet-text">140</output>
@@ -68,6 +69,9 @@
       </section>
       <section class="tweetDisplay">
       </section>
+      <a id="navToTopIcon" href="#top">
+        <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+      </a>
     </main>
   </body>
 </html>
