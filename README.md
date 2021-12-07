@@ -16,3 +16,7 @@ Tweeter is a simple, single-page Twitter clone used as a learning project for Li
 - Node 5.10.x or above
 - Chance
 - Timeago
+
+
+![Screenshot of Invalid Tweet](https://github.com/SamualM2021/tweeter/blob/ffb67590795ff4f159624b4ab0ef59623c9ed52f/docs/invalidTweet.png)
+![Screenshot of New Tweet](https://github.com/SamualM2021/tweeter/blob/ffb67590795ff4f159624b4ab0ef59623c9ed52f/docs/newTweet.png)
